@@ -30,7 +30,9 @@ def write_review():
 
 @app.route('/review', methods=['GET'])
 def read_reviews():
-    return jsonify({'result': 'success', 'msg': '이 요청은 GET!'})
+    all_reviews = list(db.reviews.find({}, {'_id' : False}))
+    print(all_reviews[0:3])
+    return jsonify({'result': 'success', 'reviews': all_reviews, 'msg' : "로딩이 완료되었습니다"})
 
 
 if __name__ == '__main__':
